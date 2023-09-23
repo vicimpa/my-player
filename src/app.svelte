@@ -50,13 +50,13 @@
   function nextTrack() {
     let index = $playlist.indexOf(selected);
     if (index === -1) return select();
-    select(playlist[rem(index + 1, $playlist.length)]);
+    select($playlist[rem(index + 1, $playlist.length)]);
   }
 
   function previewTrack() {
     let index = $playlist.indexOf(selected);
     if (index === -1) return select();
-    select(playlist[rem(index - 1, $playlist.length)]);
+    select($playlist[rem(index - 1, $playlist.length)]);
   }
 
   function slideTo(n: number) {
