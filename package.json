@@ -1,0 +1,30 @@
+{
+  "name": "my-player",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --emptyOutDir",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^2.0.4",
+    "@tsconfig/svelte": "^4.0.1",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.30",
+    "sass": "^1.68.0",
+    "svelte": "^3.58.0",
+    "svelte-check": "^3.3.1",
+    "tslib": "^2.5.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.9",
+    "vite-plugin-singlefile": "^0.13.5",
+    "vite-tsconfig-paths": "^4.2.1"
+  },
+  "dependencies": {
+    "audiomotion-analyzer": "^4.2.0",
+    "id3-parser": "^3.0.0"
+  }
+}
