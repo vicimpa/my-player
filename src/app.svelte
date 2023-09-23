@@ -100,6 +100,8 @@
     on:select={(e) => select(e.detail)}
   />
 </div>
+<br />
+<a href="https://github.com/vicimpa/my-player">GitHub Repository</a>
 
 <style lang="sass">
   .player
@@ -125,4 +127,7 @@
 
   .controll 
     gap: 10px
+
+  a
+    color: #fff
 </style>
