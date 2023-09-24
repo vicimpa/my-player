@@ -113,7 +113,6 @@
     on:select={(e) => select(e.detail)}
   />
 </div>
-<br />
 
 <style lang="sass">
   .player
