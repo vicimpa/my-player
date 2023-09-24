@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { appendMusic, type IMusic } from "playlist";
+  import { appendMusic, clearMusic, type IMusic } from "playlist";
   import { createEventDispatcher } from "svelte";
 
-  let append: HTMLDivElement;
+  const refs: HTMLDivElement[] = [];
   let isAppend = false;
 
   const dispatch = createEventDispatcher<{ select: IMusic }>();
@@ -48,24 +48,39 @@
   function onDragOver(e: DragEvent) {
     e.preventDefault();
   }
+
+  $: {
+    const index = playlist.indexOf(selected);
+    const element = refs[index];
+    if (element) {
+      element.tabIndex = 1;
+      element.focus();
+      element.blur();
+      delete element.tabIndex;
+    }
+  }
 </script>
 
 <div class="playlist" on:dragenter={onDragStart}>
-  {#each playlist as track}
+  {#each playlist as track, index}
     <div
       data-select={track === selected}
       data-playing={playing}
       class="track"
+      bind:this={refs[index]}
       on:mousedown={() => dispatch("select", track)}
     >
       <p><b>🎵</b>{track.name}</p>
     </div>
   {/each}
 
-  <div class="append" data-isappend={isAppend} bind:this={append}>
+  <div class="append" data-isappend={isAppend}>
     <p>
       Append file
       <button on:click={() => fileOpen.click()}> Open </button>
+    </p>
+    <p>
+      <button on:click={() => clearMusic()}>Clear list</button>
     </p>
   </div>
 </div>
@@ -116,12 +131,13 @@
     position: relative
     transition: background .3s
 
-    
-
     .append
-      padding: 50px
+      padding: 10px
       display: flex
       justify-content: center
+      flex-direction: column
+      align-items: center
+      gap: 20px
 
     &::-webkit-scrollbar
       width: 5px

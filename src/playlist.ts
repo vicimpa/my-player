@@ -21,3 +21,6 @@ export const appendMusic = (name: string, url: string) => {
     }];
   });
 };
+export const clearMusic = () => {
+  playlist.set([]);
+};

@@ -1,7 +1,9 @@
 <script lang="ts">
   import { frequencies } from "config";
   import { ctx as audioCtx } from "ctx";
+  import { Color } from "library/Color";
   import { avgArray } from "library/avgArray";
+  import { col } from "library/col";
   import { makeColorBuilder } from "library/colorBuilder";
   import { minMax } from "library/math";
   import { onFrame } from "library/onFrame";
@@ -29,15 +31,15 @@
 
   const getColor = makeColorBuilder([
     {
-      color: [120, 255, 77],
+      color: new Color(120, 255, 77),
       weight: 10,
     },
     {
-      color: [255, 191, 77],
+      color: new Color(255, 191, 77),
       weight: 15,
     },
     {
-      color: [255, 20, 46],
+      color: new Color(255, 20, 46),
       weight: 15,
     },
   ]);
@@ -71,6 +73,13 @@
     },
   }));
 
+  const xs = showData.length - 1;
+  const ys = 32;
+
+  const colors = Array.from({ length: ys }, (_, y) =>
+    getColor(1 - y / ys).toHex()
+  );
+
   onFrame((dtime, time) => {
     analyze.getByteFrequencyData(data);
 
@@ -83,9 +92,6 @@
     }
 
     if (!can || !ctx) return;
-
-    const xs = showData.length - 1;
-    const ys = 32;
 
     const width = (can.width = can.offsetWidth);
     const height = (can.height = can.offsetHeight);
@@ -116,10 +122,10 @@
         ctx.globalAlpha = minMax((ys - 1 - y) / ys + 0.5, 0, 1);
 
         if (d < value) {
-          ctx.fillStyle = `rgb(${getColor(1 - y / ys).join(",")})`;
+          ctx.fillStyle = colors[y];
         } else if (c < line.peak && !hasRed) {
           ctx.globalAlpha = 1;
-          ctx.fillStyle = `rgb(${getColor(1 - y / (ys + 15)).join(",")})`;
+          ctx.fillStyle = colors[minMax(y - 5, 0, colors.length - 1)];
           hasRed = true;
         } else {
           ctx.globalAlpha = 0.2;

@@ -115,7 +115,7 @@
     background-position: center
     background-size: cover
     box-shadow: 0 0 10px #000
-    transition: background .3s
+    transition: background .3s .2s
     overflow: hidden
 
   .controll
