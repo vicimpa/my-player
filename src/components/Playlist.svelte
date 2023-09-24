@@ -70,7 +70,7 @@
       bind:this={refs[index]}
       on:mousedown={() => dispatch("select", track)}
     >
-      <p><b>🎵</b>{track.name}</p>
+      <p><i class="icons-music" />{track.name}</p>
     </div>
   {/each}
 
@@ -159,7 +159,8 @@
         white-space: nowrap
         text-overflow: ellipsis
         flex-grow: 1
-        b
+        padding: 4px
+        i
           margin-right: 10px
 
       &:hover
