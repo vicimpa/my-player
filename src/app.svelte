@@ -18,7 +18,8 @@
 
   console.log(audio);
 
-  audio.volume = 0.8;
+  audio.volume = 1;
+  audio.muted = false;
   audio.preload = "metadata";
   gain.connect(ctx.destination);
   audio.onended = () => nextTrack();
@@ -38,7 +39,7 @@
     if (!audio.paused) {
       audio.pause();
     } else {
-      audio.play().catch(() => {});
+      audio.play();
     }
     ctx.resume();
   }

@@ -19,7 +19,7 @@
     for (const file of files) {
       if (file.type.indexOf("audio") === 0) {
         file.arrayBuffer().then((buffer) => {
-          const blob = new Blob([buffer]);
+          const blob = new Blob([buffer], { type: file.type });
           const url = URL.createObjectURL(blob);
           appendMusic(file.name, url);
         });

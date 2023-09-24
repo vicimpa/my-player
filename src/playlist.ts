@@ -15,6 +15,7 @@ export interface IMusic {
 export const playlist = writable<IMusic[]>([]);
 export const appendMusic = (name: string, url: string) => {
   playlist.update((old) => {
+
     return [...old, {
       name: basename(name),
       url,
