@@ -3,7 +3,6 @@
   import { ctx as audioCtx } from "ctx";
   import { Color } from "library/Color";
   import { avgArray } from "library/avgArray";
-  import { col } from "library/col";
   import { makeColorBuilder } from "library/colorBuilder";
   import { minMax } from "library/math";
   import { onFrame } from "library/onFrame";
@@ -23,7 +22,7 @@
   source.connect(analyze);
 
   const length = analyze.frequencyBinCount;
-  let data = new Uint8Array(length);
+  const data = new Uint8Array(length);
 
   const avgFrequencies = avgArray(frequencies, 2);
 

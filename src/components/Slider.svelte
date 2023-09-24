@@ -90,6 +90,7 @@
     font-size: 10px
     user-select: none
     height: 100%
+    gap: 5px
 
     &[data-disabled=true]
       opacity: 0.3

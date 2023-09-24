@@ -47,10 +47,22 @@
 </script>
 
 <div class="buttons">
-  <button on:click={() => dispatch("playPause")}>{!playing ? "▶" : "⏸"}</button>
-  <button on:click={() => dispatch("stop")}>⏹</button>
-  <button on:click={() => dispatch("previewTrack")}>⏮</button>
-  <button on:click={() => dispatch("nextTrack")}>⏭</button>
+  <button on:click={() => dispatch("playPause")}>
+    {#if !playing}
+      <i class="icons-play" />
+    {:else}
+      <i class="icons-pause" />
+    {/if}
+  </button>
+  <button on:click={() => dispatch("stop")}>
+    <i class="icons-stop" />
+  </button>
+  <button on:click={() => dispatch("previewTrack")}>
+    <i class="icons-first" />
+  </button>
+  <button on:click={() => dispatch("nextTrack")}>
+    <i class="icons-last" />
+  </button>
   <div class="slider" bind:this={slider} on:mousedown={slide}>
     <div class="persent" style="left: {(currentTime / duration) * 100}%" />
   </div>

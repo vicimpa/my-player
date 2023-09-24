@@ -83,7 +83,9 @@
     <button on:click={() => (enabled = !enabled)}
       >{enabled ? "Off" : "On"}</button
     >
-    <Slider id="volume" bind:value={volume} defaultValue={0.3}>🎚️</Slider>
+    <Slider id="volume" bind:value={volume} defaultValue={0.3}>
+      <i class="icons-volume-high" />
+    </Slider>
   </div>
   <!--  -->
 </div>

@@ -103,7 +103,9 @@
   />
 </div>
 <br />
-<a href="https://github.com/vicimpa/my-player">GitHub Repository</a>
+<a href="https://github.com/vicimpa/my-player"
+  ><i class="icons-github" /> GitHub Repository</a
+>
 
 <style lang="sass">
   .player
