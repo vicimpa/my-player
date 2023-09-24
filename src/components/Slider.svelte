@@ -37,7 +37,11 @@
       up = false;
       return;
     } else if (e.type === "mousedown") {
-      up = true;
+      if (e.button === 0) up = true;
+      if (e.button === 2) {
+        val = defaultValue;
+        return;
+      }
     }
     if (!up) return;
 

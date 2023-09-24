@@ -5,16 +5,18 @@
   import Info from "components/Info.svelte";
   import Buttons from "components/Buttons.svelte";
   import Playlist from "components/Playlist.svelte";
-  import Analyzer from "components/Analyzer.svelte";
   import Settings from "components/Settings.svelte";
   import { ctx } from "ctx";
+  import MyAnalyzer from "components/MyAnalyzer.svelte";
 
   const audio = new Audio();
   const gain = ctx.createGain();
   const source = ctx.createMediaElementSource(audio);
+  const forAnalyze = ctx.createGain();
 
   let cover: string | null;
 
+  audio.volume = 0.8;
   gain.connect(ctx.destination);
   audio.onended = () => nextTrack();
   audio.autoplay = true;
@@ -79,7 +81,7 @@
 <div class="player" style="background-image: url({cover});">
   <div class="controll">
     <Info bind:cover {selected} currentTime={$currentTime} duration={$duration}>
-      <Analyzer source={gain} />
+      <MyAnalyzer source={forAnalyze} />
     </Info>
     <Buttons
       playing={$playing}
@@ -92,7 +94,7 @@
       on:slideTo={(e) => slideTo(e.detail)}
     />
   </div>
-  <Settings input={source} output={gain} />
+  <Settings input={source} output={gain} analyze={forAnalyze} />
   <Playlist
     playlist={$playlist}
     {selected}
@@ -114,6 +116,7 @@
     background-size: cover
     box-shadow: 0 0 10px #000
     transition: background .3s
+    overflow: hidden
 
   .controll
     padding: 10px

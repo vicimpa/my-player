@@ -12,6 +12,7 @@ const loop = (time: number) => {
 
   if (lastTime < 0) lastTime = time;
   dtime = time - lastTime;
+  lastTime = time;
 
   for (const frame of frames)
     runFrame(frame);

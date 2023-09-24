@@ -24,7 +24,6 @@
     "vite-tsconfig-paths": "^4.2.1"
   },
   "dependencies": {
-    "audiomotion-analyzer": "^4.2.0",
     "id3-parser": "^3.0.0"
   }
 }

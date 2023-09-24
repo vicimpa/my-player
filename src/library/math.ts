@@ -5,3 +5,7 @@ export const rem = (n: number, c: number) => {
   if (n < 0) return rem(n + c, c);
   return n;
 };
+
+export const minMax = (n: number, min: number, max: number) => {
+  return Math.min(max, Math.max(min, n));
+};

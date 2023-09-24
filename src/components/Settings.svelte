@@ -2,9 +2,11 @@
   import { ctx } from "ctx";
   import Slider from "./Slider.svelte";
   import { onDestroy } from "svelte";
+  import { frequencies } from "config";
 
   export let input: AudioNode;
   export let output: AudioNode;
+  export let analyze: AudioNode | undefined = undefined;
 
   let volume = 0;
   let enabled = !!localStorage.getItem("settings");
@@ -24,11 +26,9 @@
     return filter;
   }
 
-  const frequencies = [
-    60, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000,
-  ];
-
-  const filters = frequencies.map(createFilter);
+  const filters = frequencies
+    .slice(1, frequencies.length - 1)
+    .map(createFilter);
 
   input.connect(filters[0]);
 
@@ -53,6 +53,12 @@
   });
 
   $: {
+    if (analyze) {
+      filters.at(-1).connect(analyze);
+    }
+  }
+
+  $: {
     gain.gain.value = volume;
   }
 </script>
@@ -67,7 +73,7 @@
       maxValue={16}
       bind:value={f.gain.value}
     >
-      {value(frequencies[i])}
+      {value(f.frequency.value)}
     </Slider>
   {/each}
 

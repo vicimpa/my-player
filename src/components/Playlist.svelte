@@ -68,20 +68,41 @@
       <button on:click={() => fileOpen.click()}> Open </button>
     </p>
   </div>
-
-  <div
-    class="drop"
-    data-isappend={isAppend}
-    on:drop={onDrop}
-    on:dragover={onDragOver}
-    on:dragleave={onDragEnd}
-    on:mouseleave={onDragEnd}
-  />
 </div>
+
+<div
+  class="drop"
+  data-isappend={isAppend}
+  on:drop={onDrop}
+  on:dragover={onDragOver}
+  on:dragleave={onDragEnd}
+  on:mouseleave={onDragEnd}
+/>
 
 <style lang="sass">
   button
     cursor: pointer
+
+  .drop
+    position: absolute
+    left: 0
+    right: 0
+    top: -100%
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: rgba(255,255,255,0.6)
+    z-index: 1
+    transition: top 0.3s
+    background-image: url('/images/drop.png')
+    background-position: center
+    background-size: 100px
+    background-repeat: no-repeat
+
+    &[data-isappend=true]
+      top: 0%
 
   .playlist
     padding: 10px
@@ -95,26 +116,7 @@
     position: relative
     transition: background .3s
 
-    .drop
-      position: absolute
-      left: 0
-      right: 0
-      top: -100%
-      width: 100%
-      height: 100%
-      display: flex
-      justify-content: center
-      align-items: center
-      background-color: rgba(255,255,255,0.6)
-      z-index: 1
-      transition: top 0.3s
-      background-image: url('/images/drop.png')
-      background-position: center
-      background-size: contain
-      background-repeat: no-repeat
-
-      &[data-isappend=true]
-        top: 0%
+    
 
     .append
       padding: 50px
