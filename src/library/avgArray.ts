@@ -1,4 +1,4 @@
-export const avgArray = (array: number[], count = 0) => {
+export const avgArray = (array: number[], count = 0): number[] => {
   if (count <= 0) return array;
 
   array = Array.from(

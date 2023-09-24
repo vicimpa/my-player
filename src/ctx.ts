@@ -1,1 +1,1 @@
-export const ctx = new AudioContext();
+export const ctx = new (AudioContext || (window as any)['webkitAudioContext']) as AudioContext;

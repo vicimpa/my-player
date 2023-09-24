@@ -9,10 +9,14 @@
   export let analyze: AudioNode | undefined = undefined;
 
   let volume = 0;
+  let show = !!localStorage.getItem("showsettings");
   let enabled = !!localStorage.getItem("settings");
 
   $: {
     localStorage.setItem("settings", enabled ? "1" : "");
+  }
+  $: {
+    localStorage.setItem("showsettings", show ? "1" : "");
   }
 
   function createFilter(frequency: number) {
@@ -63,7 +67,7 @@
   }
 </script>
 
-<div class="settings">
+<div class="settings" data-show={show}>
   {#each filters as f, i}
     <Slider
       id={`eq${i}`}
@@ -90,6 +94,12 @@
   <!--  -->
 </div>
 
+<div class="showSettings">
+  <button on:click={() => (show = !show)}>
+    <i class="icons-equalizer" />
+  </button>
+</div>
+
 <style lang="sass">
   button
     font-size: 10px
@@ -97,19 +107,44 @@
     margin: 0
     cursor: pointer
 
+  .showSettings
+    position: relative
+    justify-content: flex-end
+    z-index: 1
+    background: transparent
+
+    button
+      position: absolute
+      right: 5px
+      top: -10px
+      width: 60px
+      height: 30px
+      background-color: rgba(0,0,0,1)
+      box-shadow: 0 0 10px #000
+      backdrop-filter: blur(5px)
+      border-radius: 0 0 0 10px
+      border: none
+      color: #fff
+
   .settings
+    background-color: rgba(0,0,0,1)
+    backdrop-filter: blur(5px)
+    display: flex
     width: 100%
     height: 120px
-    top: 100%
-    left: 0
-    background-color: rgba(0,0,0,0.9)
-    backdrop-filter: blur(5px)
+    flex-shrink: 0
     padding: 10px
-    display: flex
     gap: 10px
     justify-content: space-between
     box-shadow: 0 4px 5px #000
     padding: 15px
+    margin-top: -120px
+    position: relative
+    transition: 0.3s
+
+    &[data-show=true]
+      margin-top: 0px
+
 
     .last
       display: flex

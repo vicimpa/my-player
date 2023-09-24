@@ -124,12 +124,13 @@
     display: flex
     flex-direction: column
     gap: 5px
-    height: 300px
+    flex-grow: 1
     overflow-y: scroll
     background-color: rgba(0,0,0,0.6)
     backdrop-filter: blur(10px)
     position: relative
     transition: background .3s
+    user-select: none
 
     .append
       padding: 10px

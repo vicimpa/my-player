@@ -69,6 +69,8 @@
       background-size: cover
       transition: background .3s
       box-shadow: 0 0 10px #000
+      border-radius: 5px
+      overflow: hidden
 
     .info
       flex-grow: 1

@@ -16,7 +16,10 @@
 
   let cover: string | null;
 
+  console.log(audio);
+
   audio.volume = 0.8;
+  audio.preload = "metadata";
   gain.connect(ctx.destination);
   audio.onended = () => nextTrack();
   audio.autoplay = true;
@@ -79,6 +82,13 @@
 </script>
 
 <div class="player" style="background-image: url({cover});">
+  <a
+    href="https://github.com/vicimpa/my-player"
+    target="_blank"
+    title="GitHub Repository"
+  >
+    <i class="icons-github" />
+  </a>
   <div class="controll">
     <Info bind:cover {selected} currentTime={$currentTime} duration={$duration}>
       <MyAnalyzer source={forAnalyze} />
@@ -103,13 +113,11 @@
   />
 </div>
 <br />
-<a href="https://github.com/vicimpa/my-player"
-  ><i class="icons-github" /> GitHub Repository</a
->
 
 <style lang="sass">
   .player
     width: 350px
+    height: calc(100vh - 40px)
     background-color: #444
     display: flex
     flex-direction: column
@@ -119,6 +127,8 @@
     box-shadow: 0 0 10px #000
     transition: background .3s .2s
     overflow: hidden
+    border: 2px solid #000
+    border-radius: 10px
 
   .controll
     padding: 10px
@@ -129,10 +139,26 @@
     backdrop-filter: blur(5px)
     background-color: rgba(0,0,0,0.7)
     transition: background .3s
+    z-index: 1
 
   .controll 
     gap: 10px
 
   a
-    color: #fff
+    position: absolute
+    color: #666
+    text-decoration: none
+    z-index: 2
+    text-shadow: 0 0 10px #000
+    box-shadow: 0 0 10px #000
+    top: 0px
+    right: 0px
+    font-size: 24px
+    padding: 5px 15px  
+    background-color: #000
+    transition: 0.3s
+    border-radius: 0 0 0 10px
+
+    &:hover
+      color: #fff
 </style>
