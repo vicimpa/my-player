@@ -5,5 +5,3 @@ new App({
 });
 
 addEventListener('contextmenu', e => e.preventDefault());
-
-import 'library/Color';
