@@ -1,6 +1,8 @@
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import autoprefixer from "autoprefixer";
 import { defineConfig } from "vite";
+import { ViteMinifyPlugin } from "vite-plugin-minify";
+import { viteSingleFile } from "vite-plugin-singlefile";
 import paths from "vite-tsconfig-paths";
 
 export default defineConfig({
@@ -14,11 +16,13 @@ export default defineConfig({
   build: {
     target: 'esnext',
     outDir: '../dist',
-    assetsInlineLimit: 3000
+    minify: true,
   },
   plugins: [
     svelte({ configFile: '../svelte.config.js' }),
-    paths({ projects: ['../tsconfig.json'] })
+    paths({ projects: ['../tsconfig.json'] }),
+    viteSingleFile(),
+    ViteMinifyPlugin()
   ],
   css: {
     postcss: {
