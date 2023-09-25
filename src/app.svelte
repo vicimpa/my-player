@@ -16,8 +16,6 @@
 
   let cover: string | null;
 
-  console.log(audio);
-
   audio.volume = 1;
   audio.muted = false;
   audio.preload = "metadata";
