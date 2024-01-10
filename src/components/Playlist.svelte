@@ -55,8 +55,10 @@
     if (element) {
       element.tabIndex = 1;
       element.focus();
-      element.blur();
-      delete element.tabIndex;
+      setTimeout(() => {
+        element.blur();
+        delete element.tabIndex;
+      }, 0);
     }
   }
 </script>
