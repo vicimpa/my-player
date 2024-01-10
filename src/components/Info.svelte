@@ -70,7 +70,6 @@
       transition: background .3s
       box-shadow: 0 0 10px #000
       border-radius: 5px
-      overflow: hidden
 
     .info
       flex-grow: 1
@@ -105,5 +104,6 @@
         text-align: right
         font-size: 10px
         font-weight: 600
-        transform: translateY(20px)
+        transform: translateY(18px)
+        font-size: 8px
 </style>
