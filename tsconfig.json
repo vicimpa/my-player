@@ -18,7 +18,7 @@
     "lib": [
       "ESNext",
       "DOM",
-      "DOM.Iterable"
+      "DOM.Iterable",
     ],
     "types": [
       "vite/client",

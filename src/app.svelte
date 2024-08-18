@@ -15,6 +15,7 @@
   const forAnalyze = ctx.createGain();
 
   let cover: string | null;
+  let run = false;
 
   audio.volume = 1;
   audio.muted = false;
@@ -72,6 +73,15 @@
   $: {
     if (selected && previewSelected !== selected) {
       audio.src = selected.url;
+    }
+  }
+
+  $: {
+    if (!$playing && $playlist.length && !run) {
+      setTimeout(() => {
+        run = true;
+        select($playlist.at(0));
+      });
     }
   }
 
